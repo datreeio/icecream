@@ -24,7 +24,7 @@ action "Login to ECR" {
 }
 
 action "Docker Tag" {
-  uses = "actions/docker/tag@c08a5fc9e0286844156fefff2c141072048141f6"
+  uses = "actions/docker/tag@master"
   needs = ["GitHub Action for Docker"]
   args = "[\"$IMAGE_NAME\",\"$CONTAINER_REGISTRY_PATH/$IMAGE_NAME\"]"
   env = {
