@@ -1,0 +1,30 @@
+{
+  "name": "icecream",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "exit 0",
+    "start": "node index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/datreeio/icecream.git"
+  },
+  "keywords": [],
+  "author": "Shimon Tolts",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/datreeio/icecream/issues"
+  },
+  "homepage": "https://github.com/datreeio/icecream#readme",
+  "dependencies": {
+    "koa": "^2.7.0",
+    "koa-router": "^7.4.0"
+  },
+  "prettier": {
+    "semi": false,
+    "singleQuote": true,
+    "printWidth": 120
+  }
+}
