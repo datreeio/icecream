@@ -8,7 +8,7 @@ workflow "ice cream main workflow" {
 
 action "GitHub Action for Docker" {
   uses = "actions/docker/cli@master"
-  args = "docker build -t icecream ."
+  args = "build -t icecream ."
   env = {
     AWS_DEFAULT_REGION = "us-west-1"
   }
