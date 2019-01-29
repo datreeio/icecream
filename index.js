@@ -1,4 +1,3 @@
-const serve = require('koa-static')
 const Koa = require('koa')
 const Router = require('koa-router')
 
