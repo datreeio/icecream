@@ -45,7 +45,6 @@ action "Deploy to ECS Fargate" {
   needs = ["Push image to ECR"]
   args = "--timeout 600 --max-definitions 5 --cluster demo --service-name icecream --image 483104334676.dkr.ecr.us-west-1.amazonaws.com/icecream"
   env = {
-    ECS_TIMEOUT = "600"
     CLUSTER_NAME = "demo"
     SERVICE_NAME = "icecream"
     DOCKER_REGISTRY = "483104334676.dkr.ecr.us-west-1.amazonaws.com"
