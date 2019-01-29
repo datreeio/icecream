@@ -8,7 +8,7 @@ workflow "ice cream main workflow" {
 
 action "GitHub Action for Docker" {
   uses = "actions/docker/cli@master"
-  args = "[\"build\",\"-t\",\"ice-cream\",\".\"]"
+  args = "build -t icecream . "
 }
 
 action "Login to ECR" {
