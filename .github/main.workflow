@@ -2,7 +2,7 @@ workflow "ice cream main workflow" {
   on = "push"
   resolves = [
     "GitHub Action for Docker",
-    "Push image to ECR",
+    "silinternational/ecs-deploy@master",
   ]
 }
 
@@ -38,4 +38,10 @@ action "Push image to ECR" {
     CONTAINER_REGISTRY_PATH = "483104334676.dkr.ecr.us-west-1.amazonaws.com"
     IMAGE_NAME = "icecream"
   }
+}
+
+action "silinternational/ecs-deploy@master" {
+  uses = "ecsdeploy"
+  needs = ["Push image to ECR"]
+  args = "help"
 }
