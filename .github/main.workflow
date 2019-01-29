@@ -23,7 +23,7 @@ action "Login to ECR" {
 action "Docker Tag" {
   uses = "actions/docker/tag@master"
   needs = ["GitHub Action for Docker"]
-  args = "[\"$IMAGE_NAME\",\"$CONTAINER_REGISTRY_PATH/$IMAGE_NAME\"]"
+  args = "$IMAGE_NAME $CONTAINER_REGISTRY_PATH/$IMAGE_NAME"
   env = {
     CONTAINER_REGISTRY_PATH = "483104334676.dkr.ecr.us-west-1.amazonaws.com"
     IMAGE_NAME = "icecream"
@@ -33,7 +33,7 @@ action "Docker Tag" {
 action "Push image to ECR" {
   uses = "actions/docker/cli@c08a5fc9e0286844156fefff2c141072048141f6"
   needs = ["Login to ECR", "Docker Tag"]
-  args = "[\"push\",\"$CONTAINER_REGISTRY_PATH/$IMAGE_NAME\"]"
+  args = "push $CONTAINER_REGISTRY_PATH/$IMAGE_NAME"
   env = {
     CONTAINER_REGISTRY_PATH = "483104334676.dkr.ecr.us-west-1.amazonaws.com"
     IMAGE_NAME = "icecream"
