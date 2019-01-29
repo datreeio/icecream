@@ -43,7 +43,7 @@ action "Push image to ECR" {
 action "Deploy to ECS Fargate" {
   uses = "silinternational/ecs-deploy@master"
   needs = ["Push image to ECR"]
-  args = "--timeout 600 --max-definitions 5 --cluster demo --service-name icecream --image 483104334676.dkr.ecr.us-west-1.amazonaws.com/icecream"
+  args = "--timeout 600 --max-definitions 5 --cluster demo --service-name icecream --image 483104334676.dkr.ecr.us-west-1.amazonaws.com/icecream && env"
   env = {
     CLUSTER_NAME = "demo"
     SERVICE_NAME = "icecream"
