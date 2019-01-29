@@ -41,7 +41,7 @@ action "Push image to ECR" {
 }
 
 action "silinternational/ecs-deploy@master" {
-  uses = "ecsdeploy"
+  uses = "silinternational/ecs-deploy@master"
   needs = ["Push image to ECR"]
   args = "help"
 }
