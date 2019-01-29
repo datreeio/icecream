@@ -43,12 +43,11 @@ action "Push image to ECR" {
 action "ecsdeploy" {
   uses = "silinternational/ecs-deploy@master"
   needs = ["Push image to ECR"]
-  args = "--timeout ${ECS_TIMEOUT} --max-definitions 5 --cluster ${CLUSTER_NAME} --service-name ${SERVICE_NAME} --image ${DOCKER_REGISTRY}/${SERVICE_NAME}:${DOCKER_TAG}"
+  args = "--timeout ${ECS_TIMEOUT} --max-definitions 5 --cluster ${CLUSTER_NAME} --service-name ${SERVICE_NAME} --image ${DOCKER_REGISTRY}/${SERVICE_NAME}:${GITHUB_REF}"
   env = {
     ECS_TIMEOUT = "600"
     CLUSTER_NAME = "demo"
     SERVICE_NAME = "icecream"
     DOCKER_REGISTRY = "483104334676.dkr.ecr.us-west-1.amazonaws.com"
-    DOCKER_TAG = ${GITHUB_REF}
   }
 }
