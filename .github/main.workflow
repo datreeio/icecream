@@ -49,5 +49,7 @@ action "ecsdeploy" {
     CLUSTER_NAME = "demo"
     SERVICE_NAME = "icecream"
     DOCKER_REGISTRY = "483104334676.dkr.ecr.us-west-1.amazonaws.com"
+    AWS_DEFAULT_REGION = "us-west-1"
   }
+  secrets = ["AWS_ACCESS_KEY_ID", "AWS_SECRET_ACCESS_KEY"]
 }
