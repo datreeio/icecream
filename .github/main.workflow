@@ -2,7 +2,7 @@ workflow "ice cream main workflow" {
   on = "push"
   resolves = [
     "GitHub Action for Docker",
-    "silinternational/ecs-deploy@master",
+    "ecsdeploy",
   ]
 }
 
@@ -40,7 +40,7 @@ action "Push image to ECR" {
   }
 }
 
-action "silinternational/ecs-deploy@master" {
+action "ecsdeploy" {
   uses = "silinternational/ecs-deploy@master"
   needs = ["Push image to ECR"]
   args = "help"
