@@ -1,18 +1,32 @@
 workflow "ice cream main workflow" {
   on = "push"
   resolves = [
+    "NPM Build",
     "Docker Build",
     "Deploy to ECS Fargate",
   ]
 }
 
+action "NPM Build" {
+  uses = "actions/npm@master"
+  args = "install"
+}
+
+action "NPM Test" {
+  uses = "actions/npm@3c8332795d5443adc712d30fa147db61fd520b5a"
+  needs = ["NPM Build"]
+  args = "test"
+}
+
 action "Docker Build" {
   uses = "actions/docker/cli@master"
+  needs = ["NPM Test"]
   args = "build -t icecream . "
 }
 
 action "Login to ECR" {
   uses = "actions/aws/cli@aba0951d3bb681880614bbf0daa29b4a0c9d77b8"
+  needs = ["NPM Test"]
   args = "ecr get-login --no-include-email --region $AWS_DEFAULT_REGION | sh"
   secrets = ["AWS_ACCESS_KEY_ID", "AWS_SECRET_ACCESS_KEY"]
   env = {
