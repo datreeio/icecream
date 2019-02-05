@@ -1,7 +1,8 @@
 const Koa = require('koa')
 const Router = require('koa-router')
 
-const app = new Koa()
+const app = (module.exports = new Koa())
+
 const router = new Router()
 
 router.get('/health', ctx => {
@@ -19,4 +20,4 @@ router.get('/vanilla', ctx => {
 app.use(router.routes()).use(router.allowedMethods())
 
 console.log('Starting Koa server on port 8000')
-app.listen(8000)
+if (!module.parent) app.listen(8000)

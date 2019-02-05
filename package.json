@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "exit 0",
+    "test": "./node_modules/.bin/mocha .",
     "start": "node index.js"
   },
   "repository": {
@@ -26,5 +26,9 @@
     "semi": false,
     "singleQuote": true,
     "printWidth": 120
+  },
+  "devDependencies": {
+    "mocha": "^5.2.0",
+    "supertest": "^3.4.2"
   }
 }
