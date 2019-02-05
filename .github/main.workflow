@@ -4,6 +4,7 @@ workflow "ice cream main workflow" {
     "NPM Build",
     "Docker Build",
     "Deploy to ECS Fargate",
+    "Deploy only on master",
   ]
 }
 
@@ -54,9 +55,15 @@ action "Push image to ECR" {
   }
 }
 
+action "Deploy only on master" {
+  uses = "actions/bin/filter@a9036ccda9df39c6ca7e1057bc4ef93709adca5f"
+  needs = ["Push image to ECR"]
+  args = "branch master"
+}
+
 action "Deploy to ECS Fargate" {
   uses = "silinternational/ecs-deploy@master"
-  needs = ["Push image to ECR"]
+  needs = ["Deploy only on master"]
   args = "--timeout 600 --max-definitions 5 --cluster demo --service-name icecream --image 483104334676.dkr.ecr.us-west-1.amazonaws.com/icecream"
   env = {
     CLUSTER_NAME = "demo"
@@ -66,3 +73,4 @@ action "Deploy to ECS Fargate" {
   }
   secrets = ["AWS_ACCESS_KEY_ID", "AWS_SECRET_ACCESS_KEY"]
 }
+
