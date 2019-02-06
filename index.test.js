@@ -19,4 +19,11 @@ describe('icecream service', function() {
       .expect(200)
       .expect('{"flavor":"vanilla"}', done)
   })
+
+  it('should return flavor banana', function(done) {
+    request
+      .get('/banana')
+      .expect(200)
+      .expect('{"flavor":"banana"}', done)
+  })
 })
