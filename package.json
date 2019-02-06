@@ -22,13 +22,13 @@
     "koa": "^2.7.0",
     "koa-router": "^7.4.0"
   },
+  "devDependencies": {
+    "mocha": "^5.2.0",
+    "supertest": "^3.4.2"
+  },
   "prettier": {
     "semi": false,
     "singleQuote": true,
     "printWidth": 120
-  },
-  "devDependencies": {
-    "mocha": "^5.2.0",
-    "supertest": "^3.4.2"
   }
 }
