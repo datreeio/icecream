@@ -3,7 +3,7 @@ workflow "ice cream main workflow" {
   resolves = [
     "NPM Build",
     "Docker Build",
-    "Deploy to ECS Fargate",
+    "AWS ECS force-new-deployment",
     "Deploy only on master",
   ]
 }
@@ -61,16 +61,9 @@ action "Deploy only on master" {
   args = "branch master"
 }
 
-action "Deploy to ECS Fargate" {
-  uses = "silinternational/ecs-deploy@master"
+action "AWS ECS force-new-deployment" {
+  uses = "actions/aws/cli@efb074ae4510f2d12c7801e4461b65bf5e8317e6"
   needs = ["Deploy only on master"]
-  args = "--timeout 600 --max-definitions 5 --cluster demo --service-name icecream --image 483104334676.dkr.ecr.us-west-1.amazonaws.com/icecream"
-  env = {
-    CLUSTER_NAME = "demo"
-    SERVICE_NAME = "icecream"
-    DOCKER_REGISTRY = "483104334676.dkr.ecr.us-west-1.amazonaws.com"
-    AWS_DEFAULT_REGION = "us-west-1"
-  }
+  args = "ecs --region us-west-1 update-service --cluster demo --service icecream --force-new-deployment"
   secrets = ["AWS_ACCESS_KEY_ID", "AWS_SECRET_ACCESS_KEY"]
 }
-
