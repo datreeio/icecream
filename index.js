@@ -2,7 +2,6 @@ const Koa = require('koa')
 const Router = require('koa-router')
 
 const app = (module.exports = new Koa())
-
 const router = new Router()
 
 router.get('/health', ctx => {
@@ -17,8 +16,11 @@ router.get('/vanilla', ctx => {
   ctx.body = { flavor: 'vanilla' }
 })
 
+router.get('/banana', ctx => {
+  ctx.body = { flavor: 'banana' }
+})
 
 app.use(router.routes()).use(router.allowedMethods())
 
-console.log('Starting Koa server on port 8000')
+console.log('Starting icecream server on port 8000')
 if (!module.parent) app.listen(8000)
