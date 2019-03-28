@@ -17,11 +17,6 @@ router.get('/vanilla', ctx => {
   ctx.body = { flavor: 'vanilla' }
 })
 
-router.get('/banana', ctx => {
-  ctx.body = { flavor: 'banana' }
-})
-
-
 app.use(router.routes()).use(router.allowedMethods())
 
 console.log('Starting Koa server on port 8000')
