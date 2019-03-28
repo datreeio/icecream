@@ -1,5 +1,7 @@
 const Koa = require('koa')
 const Router = require('koa-router')
+const config = require('config')
+const flavors = config.get('flavors')
 
 const app = (module.exports = new Koa())
 
@@ -10,7 +12,7 @@ router.get('/health', ctx => {
 })
 
 router.get('/', ctx => {
-  ctx.body = { message: 'Welcome to the ice cream service!' }
+  ctx.body = { message: flavors }
 })
 
 router.get('/vanilla', ctx => {
