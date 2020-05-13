@@ -5,7 +5,9 @@
   "main": "index.js",
   "scripts": {
     "test": "./node_modules/.bin/mocha .",
-    "start": "node index.js"
+    "start": "node index.js",
+    "prestart": "node config/configuration.js",
+    "pretest": "node config/configuration.js"
   },
   "repository": {
     "type": "git",
@@ -19,6 +21,7 @@
   },
   "homepage": "https://github.com/datreeio/icecream#readme",
   "dependencies": {
+    "config": "^3.0.1",
     "koa": "^2.7.0",
     "koa-router": "^7.4.0"
   },
